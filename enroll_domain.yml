@@ -1,0 +1,257 @@
+version: '3.1'
+intents:
+- affirm
+- bot_challenge
+- bot_faq
+- course_offered
+- course_prerequisite
+- course_to_take
+- deny
+- faq:
+    used_entities:
+    - course
+    - programme
+    - student
+    - year
+    is_retrieval_intent: true
+- fees
+- goodbye
+- greet
+- inform_core
+- payment
+- thank
+entities:
+- year
+- programme
+- course
+- student
+slots:
+  programme_name:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: programme
+  student_year:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: year
+  student_type:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: student
+forms:
+  course_take_form:
+    required_slots:
+    - programme_name
+    - student_year
+  student_fees_form:
+    required_slots:
+    - student_type
+responses:
+  utter_ask_student_year:
+  - text: Thank you, could you please specify which year of your {programme_name} programme you're currently in
+  - text: Thank you, could you please specify which year you're studying in your {programme_name} program?
+  - text: Thanks! Could you let me know which year you're studying in your {programme_name} program?
+  utter_ask_programme_name:
+  - text: I'm here to help! Mind letting me know which programme you're pursuing?
+  - text: Before we get started, could you share the name of the programme you're enrolled in? That'll help me guide you better.
+  - text: To ensure I'm on the same page as you, could you tell me which programme you're currently enrolled in?
+  utter_SE_1st:
+  - text: |
+      Courses to enroll for Software Engineering 1st Year are:
+      - Sem 1:
+      1. PBI1112 Preparatory English*
+      2. PPD1041 Soft Skill & Basic Volunteerism 
+      3. Foundation of Entrepreneurship Inculturation 
+      4. TMF1814 Discrete Mathematics 
+      5. TMF1913 System Analysis and Design 
+      6. TMF1414 Introduction to Programming 
+      Total Credit Hour: 14
+
+      - Sem 2:
+      1. PBI1122 Preparatory English*
+      2. MPUXXX2 Credited Co-curricular***
+      3. TMF1883 Automata Theory 
+      4. TMF1254 Communication and Computer Network 
+      5. TMF1434 Data Structure and Algorithm
+      6. TMF1214 Computer Architecture 
+      Total Credit Hour: 17
+      - * *Students with MUET Band 1 & 2 OR Intensive English (C, C+) ONLY. After passing PBI1122, students will have to
+           take PBI1102 Academic English 1 and PBI1072 English for Professional Communication in Year 2.*
+      - * ***Choose ONE only: MPU3432 (Initiative & Innovation) OR MPU3442 (Culture) OR MPU3452 (Leadership) OR
+             MPU3462 (Volunteerism) OR MPU3472 (Entrepreneurship) OR MPU3482 (Community Service) OR MPU3492
+             (Sports) OR MPU34102 (Public Speaking).*
+  utter_greet:
+  - text: Hi, I'm Tomo, FCSIT's academic chatbot, How may i help you today?
+  utter_introduce:
+  - text: |
+      Hello, I'm Tomo, an academic chatbot catered for FCSIT's undergraduates. Get started by asking some questions like:
+      - Fill academic forms 
+      - Semester or Course Registration 
+      - Course Prerequisites 
+      - Course Curriculum Structure
+      - Fees each semester
+      - Academic Guidebook 
+    buttons:
+    - title: Fill academic forms
+      payload: /faq/academic_forms
+    - title: Academic Calender
+      payload: /faq/academic_calender
+    - title: Semester/Course Registration
+      payload: /faq/registration
+    - title: Semester fees
+      payload: /fees
+    - title: Guidebook
+      payload: /faq/guidebook
+  utter_welcome:
+  - text: "Great to hear that! Are there any more questions you would like to ask? Fill in this survey form as feedback for Tomo's future improvement: https://docs.google.com/forms/d/e/1FAIpQLSfpbIbynQOp6LW9TtCT5G7OVFhAzhjmJ18VhtU4C5hn4uWA4Q/closedform"
+  utter_recommend:
+  - text: Sorry I did not quite get that, did you meant any of the following questions?
+    buttons:
+    - title: Fill academic forms
+      payload: /faq/academic_forms
+    - title: Course Prerequisites
+      payload: /course_prerequisite
+    - title: Guidebook
+      payload: /faq/guidebook
+  utter_faq/guidebook:
+  - text: |-
+      The FCSIT Academic Guidebook contains latest up to date information:
+      Link to guidebook: https://www.fcsit.unimas.my/images/2023/undergraduate/guidebook2023-4.pdf
+  utter_goodbye:
+  - text: "Goodbye and thanks for using Tomo! Fill in this survey form as feedback for Tomo's future improvement: https://docs.google.com/forms/d/e/1FAIpQLSfpbIbynQOp6LW9TtCT5G7OVFhAzhjmJ18VhtU4C5hn4uWA4Q/closedform"
+  utter_bot_faq:
+  - text: |
+      I am well equipped to answer various types of academic queries such as:
+      - Fill academic forms 
+      - Semester or Course Registration 
+      - Course Prerequisites 
+      - Course Curriculum Structure
+      - Fees each semester
+  utter_faq/academic_forms:
+  - text: 'For filling in forms or request, navigate to InAFS as the central hub for students to fill in academic forms: https://inafs.ia.unimas.my/#/login'
+  utter_course_offered:
+  - text: |
+      The courses offered in FCSIT are 
+      - Bachelor in Computer Science (Computational Science)
+      - Bachelor in Computer Science (Data Engineering)
+      - Bachelor in Computer Science (Multimedia Computing)
+      - Bachelor in Computer Science (Network Computing)
+      - Bachelor of Software Engineering with Honours
+  utter_courses_website:
+  - text: |
+      Further information are available on their respective websites:
+      - Bachelor in Computer Science (Computational Science): https://www.fcsit.unimas.my/what-we-offer/undergraduate/bcs-of-computational-science
+      - Bachelor in Computer Science (Data Engineering): https://www.fcsit.unimas.my/what-we-offer/undergraduate/bcs-of-information-system
+      - Bachelor in Computer Science (Multimedia Computing): https://www.fcsit.unimas.my/what-we-offer/undergraduate/bcs-of-multimedia-computing
+      - Bachelor in Computer Science (Network Computing): https://www.fcsit.unimas.my/what-we-offer/undergraduate/bcs-of-network-computing
+      - Bachelor of Software Engineering with Honours: https://www.fcsit.unimas.my/what-we-offer/undergraduate/bcs-of-software-engineering.
+  utter_faq/registration:
+  - text: |-
+      The links to semester and course registration are:
+      Semester Registration: https://estudent.unimas.my/SemesterRegistration/
+      Course Registration: https://smpweb.unimas.my/CourseRegistration/
+  utter_faq/academic_calender:
+  - text: "The semester's academic calender can be found at: https://www.bpps.unimas.my/academic-calendar"
+  utter_faq/course_timetable:
+  - text: |-
+      You can view your course timetable and location of your classes by logging in to https://smpweb.unimas.my/eStudent/ -> Schedule -> Class Schedule
+      Alternatively, you can open your UNIMAS Now App -> click on second tab of the menu -> Timetable
+  utter_faq/facilities:
+  - text: 'Information regarding facilities and lab rooms in FCSIT are available here: https://www.fcsit.unimas.my/my-fcsit/facilities'
+  utter_faq/firstclass:
+  - text: |-
+      CGPA for First Class Honours is around 3.75
+      While GPA for Dean List award will be 3.5
+  utter_faq/lecturer:
+  - text: 'Information regarding lecturers of the faculty can be found here: https://www.fcsit.unimas.my/home/people'
+  utter_faq/evaluation:
+  - text: 'Course evaluation form can be filled from this link: https://sppweb.unimas.my/myform/evaluation'
+  utter_faq/results:
+  - text: 'Results and grades for the semester can be viewed from this link: https://smpweb.unimas.my/eStudent/academicinfo/result *Note that results can only be viewed within announced timeframe*'
+  utter_faq/date_register:
+  - text: 'The opening and closing date for semester and course registration can be found posted here: https://www.bpps.unimas.my/important-news'
+  utter_faq/academic_advisor:
+  - text: 'Your academic advisor information can be found at: https://smpweb.unimas.my/eStudent/academicinfo/advisor'
+  utter_faq/exam_slip:
+  - text: |
+      Examination slip can be accessed through this link: https://smpweb.unimas.my/eStudent/print/examslip
+      But several steps have to be done before exam slip can be printed:
+      - Contact and meet your academic advisor
+      - Complete your course evaluation
+  utter_ask_student_type:
+  - text: Do you want to know the fees of new or current students?
+  utter_fees:
+  - condition:
+    - type: slot
+      name: student_type
+      value: new students
+    text: 'The fees required to be paid for new students are: https://www.bpps.unimas.my/index.php/component/sppagebuilder/?view=page&id=117'
+  - condition:
+    - type: slot
+      name: student_type
+      value: current students
+    text: The fees required to be paid for current students are:https://www.bpps.unimas.my/index.php/component/sppagebuilder/?view=page&id=123
+  - text: Sorry could you repeat whether you want to know fees of new or current students?
+  utter_payment:
+  - text: 'Payment for semester fees can be made here: https://payportal.unimas.my/epayment/onlinefee/index.jsp?newsearch=1'
+  utter_course_prerequisite:
+  - condition:
+    - type: slot
+      name: programme_name
+      value: network computing
+    text: 'Course prerequisites for Network Computing (NC) are:'
+    image: https://i.imgur.com/TpjoDxc.png
+  - condition:
+    - type: slot
+      name: programme_name
+      value: computational science
+    text: 'Course prerequisites for Computational Science (CS) are:'
+    image: https://i.imgur.com/wTmDWRs.png
+  - condition:
+    - type: slot
+      name: programme_name
+      value: multimedia computing
+    text: 'Course prerequisites for Multimedia Computing (MC) are:'
+    image: https://i.imgur.com/NyaLo59.png
+  - condition:
+    - type: slot
+      name: programme_name
+      value: software engineering
+    text: 'Course prerequisites for Software Engineering (SE) are:'
+    image: https://i.imgur.com/CSX4uj0.png
+  - condition:
+    - type: slot
+      name: programme_name
+      value: information systems
+    text: 'Course prerequisites for Information Systems (IS) are:'
+    image: https://i.imgur.com/Um8v2dQ.png
+  - text: Sorry, could you repeat your question?
+  utter_ask_core_name:
+  - text: Which programme core do you wish to know?
+    buttons:
+    - title: Network Computing
+      payload: /inform_core{{"programme":"network computing"}}
+    - title: Computational Science
+      payload: /inform_core{{"programme":"computational science"}}
+    - title: Multimedia Computing
+      payload: /inform_core{{"programme":"multimedia computing"}}
+    - title: Software Engineering
+      payload: /inform_core{{"programme":"software engineering"}}
+    - title: Information Systems
+      payload: /inform_core{{"programme":"information systems"}}
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+actions:
+- action_course_enroll
+- utter_faq
+- utter_course_prerequisite
+- utter_introduce
+- utter_fees
+- action_save_conversation
