@@ -213,6 +213,21 @@ nlu:
     - what about fees for [current students](student)
     - i would like to know the fees for this semester
     - fees for [new students](student)
+    - what is required to be paid
+    - fee payments
+- intent: inform
+  examples: |
+    - [new students](student)
+    - [current students](student)
+    - [1st](year)
+    - [2nd](year)
+    - [3rd](year)
+    - [4th](year)
+    - [software engineering](programme)
+    - [computational science](programme)
+    - [network computing](programme)
+    - [intelligent systems](programme)
+    - [multimedia computing](programme)
 - intent: payment
   examples: |
     - where can i pay for my semester fees
@@ -220,6 +235,9 @@ nlu:
     - i want to make payment
     - where do i pay my fees
     - where can i make payment
+    - how do i make payment
+    - how can i pay the fees
+
 - intent: faq/calculategpa
   examples: |
     - how do i calculate my gpa

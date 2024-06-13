@@ -6,7 +6,7 @@ intents:
 - course_enquiry
 - course_fail
 - course_offered
-- course_to_take
+- course_to_enroll
 - deny
 - faq:
     used_entities:
@@ -24,6 +24,7 @@ intents:
 - payment
 - thank
 - restart_conversation
+- inform
 entities:
 - student
 slots:
@@ -95,7 +96,7 @@ responses:
     - title: Course Assessment
       payload: /faq/assessment
     - title: Courses to enroll
-      payload: /course_to_take
+      payload: /course_to_enroll
   - text: |-
       I apologize, but I’m not entirely sure I understand your question.
       Please fill in this survey for any feedback regarding Tomo: https://forms.gle/LvWDDKjQXNBhPMAF9
@@ -178,7 +179,23 @@ responses:
       - Complete your course evaluation
   utter_ask_student_type:
   - text: Do you want to know the fees of new or current students?
+    buttons:
+    - title: "New Students"
+      payload: '/inform{{"student":"new students"}}'
+    - title: "Current Students"
+      payload: '/inform{{"student":"current students"}}'
   - text: Are you looking for the fee information for new students or current students?
+    buttons:
+    - title: "New Students"
+      payload: '/inform{{"student":"new students"}}'
+    - title: "Current Students"
+      payload: '/inform{{"student":"current students"}}'
+  - text: Before I proceed, are you new student or current student?
+    buttons:
+    - title: "New Students"
+      payload: '/inform{{"student":"new students"}}'
+    - title: "Current Students"
+      payload: '/inform{{"student":"current students"}}'
   utter_fees:
   - condition:
     - type: slot
