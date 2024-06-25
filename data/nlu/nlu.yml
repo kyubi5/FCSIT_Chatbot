@@ -86,9 +86,9 @@ nlu:
     - where can i register my courses or semester
 - intent: faq/academic_calender
   examples: |
-    - where can i find academic calender
-    - semester academic calender
-    - calender for current semester
+    - where can i find academic calendar
+    - semester academic calendar
+    - calendar for current semester
 - intent: faq/course_timetable
   examples: |
     - what is my course timetable

@@ -141,7 +141,7 @@ responses:
       The links to semester and course registration are:
       Semester Registration: https://estudent.unimas.my/SemesterRegistration/
       Course Registration: https://smpweb.unimas.my/CourseRegistration/
-  utter_faq/academic_calender:
+  utter_faq/academic_calendar:
   - text: 'Here is the direct link to the academic calendar: https://www.bpps.unimas.my/academic-calendar. You’ll find all the important dates there.'
   - text: To find the academic calendar, visit https://www.bpps.unimas.my/academic-calendar. It has all the information you need about semester dates, holidays, and exam periods.
   - text: You can find the academic calendar on the university's official website. Just go to https://www.bpps.unimas.my/academic-calendar to see all the important dates.
@@ -180,21 +180,21 @@ responses:
   utter_ask_student_type:
   - text: Do you want to know the fees of new or current students?
     buttons:
-    - title: "New Students"
+    - title: New Students
       payload: '/inform{{"student":"new students"}}'
-    - title: "Current Students"
+    - title: Current Students
       payload: '/inform{{"student":"current students"}}'
   - text: Are you looking for the fee information for new students or current students?
     buttons:
-    - title: "New Students"
+    - title: New Students
       payload: '/inform{{"student":"new students"}}'
-    - title: "Current Students"
+    - title: Current Students
       payload: '/inform{{"student":"current students"}}'
-  - text: Before I proceed, are you new student or current student?
+  - text: Before I proceed, are you a new student or current student?
     buttons:
-    - title: "New Students"
+    - title: New Students
       payload: '/inform{{"student":"new students"}}'
-    - title: "Current Students"
+    - title: Current Students
       payload: '/inform{{"student":"current students"}}'
   utter_fees:
   - condition:
